@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { notFound } from 'next/navigation';
 
 import { getMeal } from '@lib/meals';
 
@@ -6,6 +7,10 @@ import styles from './page.module.css';
 
 export default async function MealDetails({ params: { mealId } }) {
   const meal = await getMeal(mealId);
+
+  if (!meal) {
+    notFound();
+  }
 
   meal.instructions = meal.instructions.replace(/\n/g, '<br />');
 
