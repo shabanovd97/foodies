@@ -5,7 +5,7 @@ import Image from 'next/image';
 
 import styles from './style.module.css';
 
-export default function ImagePicker({ labelText, imageName }) {
+export default function ImagePicker({ label, name }) {
   const [pickedImage, setPickedImage] = useState(null);
   const imageInputRef = useRef();
 
@@ -32,7 +32,7 @@ export default function ImagePicker({ labelText, imageName }) {
 
   return (
     <div className={styles.picker}>
-      <label htmlFor={imageName}>{labelText}</label>
+      <label htmlFor={name}>{label}</label>
       <div className={styles.controls}>
         <div className={styles.preview}>
           {!pickedImage ? (
@@ -44,9 +44,9 @@ export default function ImagePicker({ labelText, imageName }) {
         <input
           className={styles.input}
           type="file"
-          id={imageName}
+          id={name}
           accept="image/png, image/jpeg"
-          name={imageName}
+          name={name}
           ref={imageInputRef}
           onChange={handleImageChange}
           required
