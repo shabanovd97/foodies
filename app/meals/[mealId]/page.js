@@ -5,7 +5,8 @@ import { getMeal } from '@lib/meals';
 
 import styles from './page.module.css';
 
-export default async function MealDetails({ params: { mealId } }) {
+export default async function MealDetails({ params }) {
+  const { mealId } = await params;
   const meal = await getMeal(mealId);
 
   if (!meal) {
