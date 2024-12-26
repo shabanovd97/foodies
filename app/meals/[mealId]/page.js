@@ -5,6 +5,20 @@ import { getMeal } from '@lib/meals';
 
 import styles from './page.module.css';
 
+export async function generateMetadata({ params }) {
+  const { mealId } = await params;
+  const meal = await getMeal(mealId);
+
+  if (!meal) {
+    notFound();
+  }
+
+  return {
+    title: meal.title,
+    description: meal.summary,
+  };
+}
+
 export default async function MealDetails({ params }) {
   const { mealId } = await params;
   const meal = await getMeal(mealId);
@@ -19,7 +33,11 @@ export default async function MealDetails({ params }) {
     <>
       <header className={styles.header}>
         <div className={styles.image}>
-          <Image src={`https://shabanovd97-foodies-storage.s3.amazonaws.com/${meal.image}`} alt={meal.title} fill />
+          <Image
+            src={`https://shabanovd97-foodies-storage.s3.amazonaws.com/${meal.image}`}
+            alt={meal.title}
+            fill
+          />
         </div>
         <div className={styles.headerText}>
           <h1>{meal.title}</h1>

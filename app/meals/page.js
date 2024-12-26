@@ -8,6 +8,11 @@ import { getMeals } from '@lib/meals';
 
 import styles from './page.module.css';
 
+export const metadata = {
+  title: 'All meals',
+  description: 'Brows the delicious meals.',
+};
+
 async function Meals() {
   const meals = await getMeals();
 
